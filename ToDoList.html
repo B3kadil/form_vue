@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    <form>
+        <label for="city">City:</label>
+        <select v-model="selCity" @change="updateDepartments">
+            <option v-for="city in Object.keys(cities)" :value="city">{{ cities[city] }}</option>
+        </select>
+
+        <label for="department">Цех:</label>
+        <select v-model="selDep" @change="updateEmployees">
+            <option v-for="dep in departments[selCity]" :value="dep.val">{{ dep.text }}</option>
+        </select>
+
+        <label for="employee">Сотрудник:</label>
+        <select v-model="selEmpl">
+            <option v-for="emp in employees[selDep]" :value="emp.val">{{ emp.text }}</option>
+        </select>
+
+        <label for="team">Бригада:</label>
+        <select v-model="selTeam">
+            <option value="team1">Бригада 1</option>
+            <option value="team2">Бригада 2</option>
+        </select>
+
+        <label for="change">Смена:</label>
+        <select v-model="selChange">
+            <option value="change1">Смена 1</option>
+            <option value="change2">Смена 2</option>
+        </select>
+
+        <button type="button" @click="saveData">Save</button>
+    </form>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
